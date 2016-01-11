@@ -25,8 +25,11 @@ if [ -f "./dropbox_uploader.sh" ]; then
 else
     DU=$(which dropbox_uploader.sh)
     if [ $? -ne 0 ]; then
-        echo "Dropbox Uploader not found!"
-        exit 1
+        DU=$(which dropbox_uploader)
+        if [ $? -ne 0 ]; then
+          echo "Dropbox Uploader not found!"
+          exit 1
+        fi
     fi
 fi
 
@@ -420,4 +423,3 @@ while (true); do
         ;;
     esac
 done
-
